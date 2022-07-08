@@ -40,7 +40,7 @@ from .const import (
     _LOGGER,
     ATTR_FAN_STATE,
     ATTR_HVAC_STATE,
-    CONF_HUMIDIFIER,
+    # CONF_HUMIDIFIER,
     DEFAULT_SSL,
     DOMAIN,
     HOLD_MODE_TEMPERATURE,
@@ -50,7 +50,7 @@ PLATFORM_SCHEMA = PLATFORM_SCHEMA.extend(
     {
         vol.Required(CONF_HOST): cv.string,
         vol.Optional(CONF_PASSWORD): cv.string,
-        vol.Optional(CONF_HUMIDIFIER, default=True): cv.boolean,
+        # vol.Optional(CONF_HUMIDIFIER, default=True): cv.boolean,
         vol.Optional(CONF_SSL, default=DEFAULT_SSL): cv.boolean,
         vol.Optional(CONF_TIMEOUT, default=5): vol.All(
             vol.Coerce(int), vol.Range(min=1)
@@ -134,8 +134,8 @@ class VenstarThermostat(VenstarEntity, ClimateEntity):
         if self._client.mode == self._client.MODE_AUTO:
             features |= ClimateEntityFeature.TARGET_TEMPERATURE_RANGE
 
-        if self._client.hum_setpoint is not None:
-            features |= ClimateEntityFeature.TARGET_HUMIDITY
+        # if self._client.hum_setpoint is not None:
+        #     features |= ClimateEntityFeature.TARGET_HUMIDITY
 
         return features
 
@@ -160,10 +160,10 @@ class VenstarThermostat(VenstarEntity, ClimateEntity):
         """Return the current temperature."""
         return self._client.get_indoor_temp()
 
-    @property
-    def current_humidity(self):
-        """Return the current humidity."""
-        return self._client.get_indoor_humidity()
+    # @property
+    # def current_humidity(self):
+    #     """Return the current humidity."""
+    #     return self._client.get_indoor_humidity()
 
     @property
     def hvac_mode(self) -> HVACMode:
@@ -225,10 +225,10 @@ class VenstarThermostat(VenstarEntity, ClimateEntity):
             return self._client.cooltemp
         return None
 
-    @property
-    def target_humidity(self):
-        """Return the humidity we try to reach."""
-        return self._client.hum_setpoint
+    # @property
+    # def target_humidity(self):
+    #     """Return the humidity we try to reach."""
+    #     return self._client.hum_setpoint
 
     @property
     def min_humidity(self):
@@ -324,13 +324,13 @@ class VenstarThermostat(VenstarEntity, ClimateEntity):
         self._set_operation_mode(hvac_mode)
         self.schedule_update_ha_state()
 
-    def set_humidity(self, humidity):
-        """Set new target humidity."""
-        success = self._client.set_hum_setpoint(humidity)
+    # def set_humidity(self, humidity):
+    #     """Set new target humidity."""
+    #     success = self._client.set_hum_setpoint(humidity)
 
-        if not success:
-            _LOGGER.error("Failed to change the target humidity level")
-        self.schedule_update_ha_state()
+        # if not success:
+        #     _LOGGER.error("Failed to change the target humidity level")
+        # self.schedule_update_ha_state()
 
     def set_preset_mode(self, preset_mode):
         """Set the hold mode."""

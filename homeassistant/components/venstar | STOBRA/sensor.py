@@ -152,16 +152,16 @@ class VenstarSensor(VenstarEntity, SensorEntity):
 
 
 SENSOR_ENTITIES: tuple[VenstarSensorEntityDescription, ...] = (
-    VenstarSensorEntityDescription(
-        key="hum",
-        device_class=SensorDeviceClass.HUMIDITY,
-        state_class=SensorStateClass.MEASUREMENT,
-        uom_fn=lambda _: PERCENTAGE,
-        value_fn=lambda coordinator, sensor_name: coordinator.client.get_sensor(
-            sensor_name, "hum"
-        ),
-        name_fn=lambda coordinator, sensor_name: f"{coordinator.client.name} {sensor_name} Humidity",
-    ),
+#     VenstarSensorEntityDescription(
+#         key="hum",
+#         device_class=SensorDeviceClass.HUMIDITY,
+#         state_class=SensorStateClass.MEASUREMENT,
+#         uom_fn=lambda _: PERCENTAGE,
+#         value_fn=lambda coordinator, sensor_name: coordinator.client.get_sensor(
+#             sensor_name, "hum"
+#         ),
+#         name_fn=lambda coordinator, sensor_name: f"{coordinator.client.name} {sensor_name} Humidity",
+#     ),
     VenstarSensorEntityDescription(
         key="temp",
         device_class=SensorDeviceClass.TEMPERATURE,
@@ -172,16 +172,16 @@ SENSOR_ENTITIES: tuple[VenstarSensorEntityDescription, ...] = (
         ),
         name_fn=lambda coordinator, sensor_name: f"{coordinator.client.name} {sensor_name.replace(' Temp', '')} Temperature",
     ),
-    VenstarSensorEntityDescription(
-        key="co2",
-        device_class=SensorDeviceClass.CO2,
-        state_class=SensorStateClass.MEASUREMENT,
-        uom_fn=lambda _: CONCENTRATION_PARTS_PER_MILLION,
-        value_fn=lambda coordinator, sensor_name: coordinator.client.get_sensor(
-            sensor_name, "co2"
-        ),
-        name_fn=lambda coordinator, sensor_name: f"{coordinator.client.name} {sensor_name} CO2",
-    ),
+    # VenstarSensorEntityDescription(
+    #     key="co2",
+    #     device_class=SensorDeviceClass.CO2,
+    #     state_class=SensorStateClass.MEASUREMENT,
+    #     uom_fn=lambda _: CONCENTRATION_PARTS_PER_MILLION,
+    #     value_fn=lambda coordinator, sensor_name: coordinator.client.get_sensor(
+    #         sensor_name, "co2"
+    #     ),
+    #     name_fn=lambda coordinator, sensor_name: f"{coordinator.client.name} {sensor_name} CO2",
+    # ),
     VenstarSensorEntityDescription(
         key="iaq",
         device_class=SensorDeviceClass.AQI,
@@ -192,16 +192,16 @@ SENSOR_ENTITIES: tuple[VenstarSensorEntityDescription, ...] = (
         ),
         name_fn=lambda coordinator, sensor_name: f"{coordinator.client.name} {sensor_name} IAQ",
     ),
-    VenstarSensorEntityDescription(
-        key="battery",
-        device_class=SensorDeviceClass.BATTERY,
-        state_class=SensorStateClass.MEASUREMENT,
-        uom_fn=lambda _: PERCENTAGE,
-        value_fn=lambda coordinator, sensor_name: coordinator.client.get_sensor(
-            sensor_name, "battery"
-        ),
-        name_fn=lambda coordinator, sensor_name: f"{coordinator.client.name} {sensor_name} Battery",
-    ),
+    # VenstarSensorEntityDescription(
+    #     key="battery",
+    #     device_class=SensorDeviceClass.BATTERY,
+    #     state_class=SensorStateClass.MEASUREMENT,
+    #     uom_fn=lambda _: PERCENTAGE,
+    #     value_fn=lambda coordinator, sensor_name: coordinator.client.get_sensor(
+    #         sensor_name, "battery"
+    #     ),
+    #     name_fn=lambda coordinator, sensor_name: f"{coordinator.client.name} {sensor_name} Battery",
+    # ),
 )
 
 RUNTIME_ENTITY = VenstarSensorEntityDescription(
